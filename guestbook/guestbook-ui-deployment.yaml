@@ -17,4 +17,16 @@ spec:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         name: guestbook-ui
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        volumeMounts:
+          - name: configs
+            mountPath: /etc/apache2/ports.conf
+            subPath: ports.conf
+          - name: configs
+            mountPath: /etc/apache2/sites-enabled/000-default.conf
+            subPath: 000-default.conf
+      volumes:
+        - name: configs
+          type: ConfigMap
+          configMap:
+            name: apache-config
