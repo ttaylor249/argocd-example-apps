@@ -27,6 +27,5 @@ spec:
             subPath: 000-default.conf
       volumes:
         - name: configs
-          type: ConfigMap
           configMap:
             name: apache-config
